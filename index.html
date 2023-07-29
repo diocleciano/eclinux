@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site up</title>
+    <style>
+        body {
+            background-color: #33cc33;
+            margin: 0;
+            padding: 0;
+
+        }
+
+        .bt {
+            position: relative;
+
+        }
+
+        #navbar {
+            background-color: #000000;
+            height: 60px;
+            text-align: center;
+            color: #ffffff;
+            padding-top: 15px;
+        }
+
+        #navbar a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        #content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: calc(100vh - 120px);
+        }
+
+        #footer {
+            background-color: #000000;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        #button {
+            background-color: #ffd700;
+            color: #ffffff;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        #message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: bold;
+            font-size: 48px;
+            color: #000000;
+            transition: opacity 2s ease-in-out;
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navbar">
+        <a href="https://github.com/diocleciano/eclinux.git" target="_blank">Repositório</a>
+    </div>
+
+    <div id="content">
+        <h1>Diocleciano</h1>
+        <h2 id="message">up</h2>
+
+        <canvas id="canvas"></canvas>
+    </div>
+    <div class="bt">
+        <button id="button" onclick="showMessage()">UP</button>
+    </div>
+    <div id="footer">
+        <p>@= Diocleciano</p>
+    </div>
+
+    <script>
+        // Código JavaScript para criar as bolhas animadas
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+        var bubbles = [];
+
+        function Bubble(x, y, radius, speedX, speedY) {
+            this.x = x;
+            this.y = y;
+            this.radius = radius;
+            this.speedX = speedX;
+            this.speedY = speedY;
+            this.opacity = Math.random() * 0.8 + 0.2;
+            this.color = getRandomColor();
+
+            this.update = function () {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.y + this.radius > canvas.height) {
+                    this.y = 0;
+                    this.x = Math.random() * canvas.width;
+                }
+
+                this.draw();
+            };
+
+            this.draw = function () {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.globalAlpha = this.opacity;
+                ctx.fill();
+                ctx.closePath();
+                ctx.globalAlpha = 1;
+            };
+        }
+
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            do {
+                color = '#';
+                for (var i = 0; i < 6; i++) {
+                    color += letters[Math.floor(Math.random() * 16)];
+                }
+            } while (color === '#33cc33'); // Evita a cor verde do fundo
+            return color;
+        }
+
+        function createBubbles() {
+            for (var i = 0; i < 50; i++) {
+                var x = Math.random() * canvas.width;
+                var y = Math.random() * canvas.height;
+                var radius = Math.random() * 20 + 5;
+                var speedX = Math.random() * 2 - 1;
+                var speedY = Math.random() * 2 + 1;
+
+                var bubble = new Bubble(x, y, radius, speedX, speedY);
+                bubbles.push(bubble);
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (var i = 0; i < bubbles.length; i++) {
+                bubbles[i].update();
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        function showMessage() {
+            var message = document.getElementById('message');
+            message.style.opacity = '1';
+            setTimeout(function () {
+                message.style.opacity = '0';
+            }, 2000);
+        }
+
+        // Inicializar o canvas e as bolhas
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        createBubbles();
+        animate();
+    </script>
+</body>
+
+</html>
+
