@@ -1,0 +1,2 @@
+#Este texto deve ficar no arquivo exports em "/etc/exports"
+/mnt/diocleciano "IP_da_Instancia_Pagina"(rw,sync,no_root_squash)
