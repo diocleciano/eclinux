@@ -19,11 +19,26 @@
 #codigo no fstab
 #fs-0630fcfc7765b6145.efs.us-east-1.amazonaws.com:/ /home/ec2-user/main nfs4 nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport 0 0
 
+fs-0df0c24f03161fb64.efs.us-east-1.amazonaws.com:/ /home/ec2-user/main nfs4 nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport 0 0
+
+#guia para usuario usar o githyb durante a criação:
+#verificar auteracoes:
+git status
+#adicionar todos os arquivos modificados(se for um especifico troque o "." pelo arquivo) :
+git add .
+#adicionar o commit:
+git commit -m "sua nota desta alteracao"
+
+
 
 
 sudo yum update -y
 sudo amazon-linux-extras install docker -y
 sudo systemctl start docker
+
+
 passo 1:
 criar banco de dados 
-fazer arquivo docker compose 
+fazer arquivo docker compose
+pra facilitar a vida o arquivo.sh ja faz isso
+colocar dns no banco de dados no docker-compose
