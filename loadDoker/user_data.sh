@@ -29,24 +29,12 @@ services:
     ports:
       - "80:80"
     environment:
-      WORDPRESS_DB_HOST: 'end point do banco de dados'
-      WORDPRESS_DB_USER: 'nome do adm'
-      WORDPRESS_DB_PASSWORD: 'sua senha'
-      WORDPRESS_DB_NAME: 'nome do banco de dados'
+      WORDPRESS_DB_HOST: wordpress.cpvygcqf99au.us-east-1.rds.amazonaws.com
+      WORDPRESS_DB_USER: admin
+      WORDPRESS_DB_PASSWORD: sssH.senh4
+      WORDPRESS_DB_NAME: wordpress
     volumes:
-      - wordpress_data:/var/www/html
-  db:
-    image: mysql:5.7
-    environment:
-      MYSQL_ROOT_PASSWORD: 'nome do adm'
-      MYSQL_DATABASE: 'nome do db'
-      MYSQL_USER: 'seu usuario'
-      MYSQL_PASSWORD: 'sua senha'
-    volumes:
-      - db_data:/var/lib/mysql
-volumes:
-  wordpress_data:
-  db_data:
+      - /home/ec2-user/main:/var/www/html
 EOT
 
 # Dar permissões adequadas para o arquivo docker-compose.yml
