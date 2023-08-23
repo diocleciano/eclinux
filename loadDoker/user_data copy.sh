@@ -35,10 +35,10 @@ services:
     ports:
       - "80:80"
     environment:
-      WORDPRESS_DB_HOST: endpoint
-      WORDPRESS_DB_USER: admlog
-      WORDPRESS_DB_PASSWORD: senha
-      WORDPRESS_DB_NAME: nomedb
+      WORDPRESS_DB_HOST: wordpress.cpvygcqf99au.us-east-1.rds.amazonaws.com
+      WORDPRESS_DB_USER: admin
+      WORDPRESS_DB_PASSWORD: sssH.senh4
+      WORDPRESS_DB_NAME: wordpress
     volumes:
       - /home/ec2-user/main:/var/www/html
 EOT
