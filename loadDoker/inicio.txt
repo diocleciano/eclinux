@@ -1,8 +1,10 @@
 
 #codigo no fstab
+
 #fs-0630fcfc7765b6145.efs.us-east-1.amazonaws.com:/ /home/ec2-user/main nfs4 nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport 0 0
 
-fs-0df0c24f03161fb64.efs.us-east-1.amazonaws.com:/ /home/ec2-user/main nfs4 nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport 0 0
+ #"id no efs" "/seu/diretório/designado/" nfs4 "tal coisa" 0 0
+
 
 sudo chown ec2-user main/
 sudo usermod -aG docker $USER
@@ -12,26 +14,25 @@ docker-compose up -d
 
 sudo systemctl start docker
 
+
+#Target para health check 
+
 /wp-content/
 
 #guia para usuario usar o githyb durante a criação:
-#verificar auteracoes:
+#verificar alterações:
 git status
 #adicionar todos os arquivos modificados(se for um especifico troque o "." pelo arquivo) :
 git add .
 #adicionar o commit:
-git commit -m "sua nota desta alteracao"
+git commit -m "nota desta alteracao"
+#enviar alterações:
+git push origin "nome da branch para atualizar"
 
 
+guia geral:
+Criar banco de dados (esperar para pegar o dns)
+Fazer diretorio efs (pegar os dados nescessários)
 
-
-sudo yum update -y
-sudo amazon-linux-extras install docker -y
-sudo systemctl start docker
-
-
-passo 1:
-criar banco de dados 
-fazer arquivo docker compose
-pra facilitar a vida o arquivo.sh ja faz isso
-colocar dns no banco de dados no docker-compose
+Pra facilitar a vida o arquivo.sh ja faz isso
+colocar dns do banco de dados no docker-compose
